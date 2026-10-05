@@ -1,13 +1,14 @@
 from models import Cliente
 from shared.json_manager import GestorJSON
-
+import os
+BASE = os.path.dirname(os.path.abspath(__file__))
 
 class ClienteController:
     """CONTROLADOR: las cinco operaciones. No imprime ni pide datos."""
 
     # ===== ATRIBUTOS DE CLASE: toda la configuración junta =====
     MODELO = Cliente
-    ARCHIVO = "data/clientes.json"
+    ARCHIVO = os.path.join(BASE, "data", "clientes.json")
     CAMPOS_BUSCABLES = ("nombre", "apellido", "email", "telefono", "ciudad")
     _gestor = GestorJSON(ARCHIVO)        # se crea una sola vez, al importar el módulo
 

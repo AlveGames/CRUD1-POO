@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ana",
+    "apellido": "Pérez",
+    "email": "ana@escuela.edu",
+    "carnet": "EST001",
+    "notas": {
+      "Matemática": [
+        18
+      ],
+      "Inglés": [
+        12
+      ],
+      "Matematicas": [
+        12
+      ]
+    },
+    "materias": [
+      "Inglés",
+      "Matematicas",
+      "Matemática"
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Luis",
+    "apellido": "Torres",
+    "email": "luis@escuela.edu",
+    "carnet": "EST002",
+    "notas": {
+      "Inglés": [
+        10
+      ],
+      "Física": [
+        11
+      ]
+    },
+    "materias": [
+      "Física",
+      "Inglés"
+    ]
+  }
+]

@@ -136,6 +136,10 @@ class Cliente:
             datos.get("direccion", ""),
         )
 
+#========================================================================================================
+#========================================================================================================
+#========================================================================================================
+#========================================================================================================
 
 class Estudiante:
     """MODELO: un estudiante con sus materias (set) y sus notas (dict de listas)."""
@@ -233,6 +237,11 @@ class Estudiante:
         for lista_notas in self.__notas.values():
             todas.extend(lista_notas)
         return round(sum(todas) / len(todas), 2) if todas else 0
+
+    @property
+    def estado(self):
+        # CALCULADA: depende del promedio, no guarda nada
+        return "Aprobado" if self.promedio >= 14 else "Reprobado"
 
     # ===== MÉTODOS DE INSTANCIA =====
     def inscribir_materia(self, materia):
