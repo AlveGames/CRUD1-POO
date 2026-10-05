@@ -146,3 +146,53 @@ print(ClienteController.agrupar_por_ciudad())
 #                 print(f"  {nombre}: {materia} ({promedio})")
 #         self.pausa()
 # ============================================================
+
+
+#======================
+# si se requiere implementsr un campo nuevo pero simple 
+#debe ir asi
+# ===== AGREGAR CAMPO NUEVO (ej. carrera) =====
+# OJO: "..." = lo que ya está escrito, no se copia
+
+# --- models.py > class Estudiante ---
+
+# 1. Agregar al FINAL de las tuplas:
+#     CAMPOS = (..., "carrera")
+#     OBLIGATORIOS = (..., "carrera")
+
+# 2. En __init__, agregar al FINAL de los parámetros:
+#     def __init__(self, ..., carrera=""):
+
+# 3. En __init__, PEGAR debajo de self.carnet = carnet:
+#         self.carrera = carrera
+
+# 4. PEGAR debajo del setter de carnet:
+#     @property
+#     def carrera(self):
+#         return self.__carrera
+#
+#     @carrera.setter
+#     def carrera(self, valor):
+#         self.__carrera = Estudiante.limpiar(valor).title()
+
+# 5. En a_diccionario, PEGAR debajo de "carnet": self.__carnet,
+#             "carrera": self.__carrera,
+
+# 6. En desde_diccionario, PEGAR debajo de materias=...
+#             carrera=datos.get("carrera", ""),
+
+# --- OPCIONAL: views.py > class EstudianteController ---
+#     CAMPOS_BUSCABLES = (..., "carrera")
+
+# --- OPCIONAL: main.py > class MenuEstudiantes (NO MenuClientes) ---
+# REEMPLAZAR mostrar_tabla completo:
+#     def mostrar_tabla(self, estudiantes):
+#         print(f"{'ID':<5}{'NOMBRE':<25}{'CARNET':<12}{'CARRERA':<20}{'PROMEDIO':<10}{'ESTADO':<12}")
+#         print("-" * self.ANCHO)
+#         for e in estudiantes:
+#             print(f"{e.id:<5}{e.nombre_completo:<25}{e.carnet:<12}"
+#                   f"{e.carrera:<20}{e.promedio:<10}{e.estado:<12}")
+#         print("-" * self.ANCHO)
+#         imprimir_info(f"Total: {len(estudiantes)} estudiante(s)")
+
+# =============================================
