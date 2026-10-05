@@ -93,3 +93,56 @@ print(Cliente.resumen())             # Se han creado N clientes
 print("\n=== Ejercicio 8 ===")
 print(ClienteController.agrupar_por_ciudad())
 # Para verlo en el menu: ejecutar main.py y elegir la opcion 8.
+
+
+
+
+
+
+
+#ayuda complementaria si se desea modificar o agregar algo al menu funcionalmente:
+# ============================================================
+# RECETA PARA AGREGAR UNA FUNCION NUEVA AL MENU
+# Siempre 3 pasos, de abajo hacia arriba:
+#   1. MODELO: si usa los datos de UN estudiante -> metodo en Estudiante
+#   2. CONTROLADOR: junta el resultado de TODOS, sin print
+#   3. VISTA: metodo que muestra + linea en self._opciones
+#
+# EJEMPLO: materia con mas puntos de cada estudiante
+#
+# --- PASO 1: models.py, dentro de Estudiante (debajo de notas_de) ---
+#     def mejor_materia(self):
+#         mejor = None
+#         mejor_promedio = -1
+#         for materia, notas in self.__notas.items():
+#             promedio = sum(notas) / len(notas)
+#             if promedio > mejor_promedio:
+#                 mejor = materia
+#                 mejor_promedio = promedio
+#         if mejor is None:
+#             return None
+#         return mejor, round(mejor_promedio, 2)
+#
+#   Si piden la SUMA en vez del promedio:
+#   cambiar  sum(notas) / len(notas)  por  sum(notas)
+#
+# --- PASO 2: views.py, al final de EstudianteController ---
+#     @classmethod
+#     def mejores_materias(cls):
+#         return {e.nombre_completo: e.mejor_materia() for e in cls.listar()}
+#
+# --- PASO 3a: main.py, en __init__ de MenuEstudiantes ---
+#   Debajo de la opcion "10" y ANTES de self._opciones["0"] = salir:
+#         self._opciones["11"] = ("Materia con más puntos", self.mejores_materias)
+#
+# --- PASO 3b: main.py, metodo nuevo en MenuEstudiantes ---
+#     def mejores_materias(self):
+#         imprimir_titulo("MATERIA CON MÁS PUNTOS")
+#         for nombre, resultado in self._controlador.mejores_materias().items():
+#             if resultado is None:
+#                 print(f"  {nombre}: sin notas")
+#             else:
+#                 materia, promedio = resultado
+#                 print(f"  {nombre}: {materia} ({promedio})")
+#         self.pausa()
+# ============================================================
